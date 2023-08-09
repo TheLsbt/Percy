@@ -29,14 +29,26 @@ func _exit_tree() -> void:
 	global.merge_down_layer_button = _o_merge_down_layer_button
 	global.remove_layer_button = _o_remove_layer_button
 	global.layer_opacity_slider = _o_layer_opacity_slider
+	
+	move_up_layer_btn.disconnect("pressed", global.animation_timeline, "change_layer_order")
+	move_down_layer_btn.disconnect("pressed", global.animation_timeline, "change_layer_order")
+	merge_down_layer_btn.disconnect("pressed", global.animation_timeline, "_on_MergeDownLayer_pressed")
+	clone_layer_btn.disconnect("pressed", global.animation_timeline, "_on_CloneLayer_pressed")
+	remove_layer_btn.disconnect("pressed", global.animation_timeline, "_on_RemoveLayer_pressed")
+	add_layer_btn.disconnect("pressed", global.animation_timeline, "add_layer")
+	add_layer_list.get_popup().disconnect("id_pressed", global.animation_timeline, "add_layer")
+	opacity_slider.disconnect("value_changed", global.animation_timeline, "_on_OpacitySlider_value_changed")
 
 func _ready() -> void:
+	print("Setting Original UI")
 	_o_layer_vbox = global.layer_vbox
 	_o_move_down_layer_button = global.move_down_layer_button
 	_o_move_up_layer_button = global.move_up_layer_button
 	_o_merge_down_layer_button = global.merge_down_layer_button
 	_o_remove_layer_button = global.remove_layer_button
 	_o_layer_opacity_slider = global.layer_opacity_slider
+	
+	print("Setting Custom UI")
 	
 	global.layer_vbox = layer_vbox
 	
@@ -48,24 +60,22 @@ func _ready() -> void:
 	
 	global.layer_opacity_slider = opacity_slider
 	
-#	ExtensionsApi.signals.connect_project_changed(self, "project_changed")
+	print("Connecting Custom UI")
 	
 	move_up_layer_btn.connect("pressed", global.animation_timeline, "change_layer_order", [true])
 	move_down_layer_btn.connect("pressed", global.animation_timeline, "change_layer_order", [false])
-	
 	merge_down_layer_btn.connect("pressed", global.animation_timeline, "_on_MergeDownLayer_pressed")
-	
 	clone_layer_btn.connect("pressed", global.animation_timeline, "_on_CloneLayer_pressed")
-	
 	remove_layer_btn.connect("pressed", global.animation_timeline, "_on_RemoveLayer_pressed")
-	
 	add_layer_btn.connect("pressed", global.animation_timeline, "add_layer", [0])
 	add_layer_list.get_popup().connect("id_pressed", global.animation_timeline, "add_layer")
-	
 	opacity_slider.connect("value_changed", global.animation_timeline, "_on_OpacitySlider_value_changed")
 	
 	print("Loading previously created nodes.")
 	
+	# This is needed becuase when a extension is added project changed isnt called (by the time ready is called on this node)
+	
+	# Ripped from AnimationTimeline.gd (Pixelorama Source)
 	var project = global.current_project
 	
 	for layer in project.layers.size():

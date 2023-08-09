@@ -24,9 +24,10 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
-	if percy:
-		percy.queue_free()
-		
+	ExtensionsApi.dialog.show_error("Please Restart Pixelorama (From Percy) to fix UI errors")
 	if affected.size() > 0:
 		for a in affected:
 			a.visible = true
+	
+	if global:
+		ExtensionsApi.panel.remove_node_from_tab(percy)
