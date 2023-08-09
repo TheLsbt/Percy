@@ -1,0 +1,243 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/UI/Nodes/ValueSlider.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/layers/clone.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/layers/new.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/layers/move_up.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/layers/move_down.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/layers/merge_down.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/layers/delete.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/misc/value_arrow.svg" type="Texture" id=8]
+[ext_resource path="res://src/Extensions/Percy/UI/Percy.gd" type="Script" id=9]
+
+[node name="Percy" type="PanelContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 220, 128 )
+script = ExtResource( 9 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 213.0
+margin_bottom = 121.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 206.0
+margin_bottom = 114.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 206.0
+margin_bottom = 50.0
+
+[node name="LayerButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 206.0
+margin_bottom = 22.0
+size_flags_vertical = 0
+custom_constants/separation = 9
+
+[node name="AddLayer" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons" groups=["UIButtons"]]
+margin_right = 44.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 44, 22 )
+hint_tooltip = "Create a new layer"
+mouse_default_cursor_shape = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons/AddLayer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -11.0
+margin_right = 22.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+
+[node name="AddLayerList" type="MenuButton" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons/AddLayer"]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -22.0
+margin_top = -10.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 22, 0 )
+focus_mode = 2
+mouse_default_cursor_shape = 2
+items = [ "Add Pixel Layer", null, 0, false, false, 0, 0, null, "", false, "Add Group Layer", null, 0, false, false, 1, 0, null, "", false, "Add 3D Layer", null, 0, false, false, 2, 0, null, "", false ]
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons/AddLayer/AddLayerList"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -6.0
+margin_top = -6.0
+margin_right = 6.0
+margin_bottom = 6.0
+texture = ExtResource( 8 )
+
+[node name="RemoveLayer" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons" groups=["UIButtons"]]
+margin_left = 53.0
+margin_right = 75.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+hint_tooltip = "Remove current layer"
+focus_mode = 0
+mouse_default_cursor_shape = 8
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons/RemoveLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -7.0
+margin_top = -7.0
+margin_right = 7.0
+margin_bottom = 7.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveUpLayer" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons" groups=["UIButtons"]]
+margin_left = 84.0
+margin_right = 106.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+hint_tooltip = "Move up the current layer"
+focus_mode = 0
+mouse_default_cursor_shape = 8
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons/MoveUpLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -11.0
+margin_top = -11.0
+margin_right = 11.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveDownLayer" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons" groups=["UIButtons"]]
+margin_left = 115.0
+margin_right = 137.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+hint_tooltip = "Move down the current layer"
+focus_mode = 0
+mouse_default_cursor_shape = 8
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons/MoveDownLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -11.0
+margin_top = -11.0
+margin_right = 11.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloneLayer" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons" groups=["UIButtons"]]
+margin_left = 146.0
+margin_right = 168.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+hint_tooltip = "Clone current layer"
+mouse_default_cursor_shape = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons/CloneLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -11.0
+margin_top = -11.0
+margin_right = 11.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MergeDownLayer" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons" groups=["UIButtons"]]
+margin_left = 177.0
+margin_right = 199.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+hint_tooltip = "Merge current layer with the one below"
+focus_mode = 0
+mouse_default_cursor_shape = 8
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/LayerButtons/MergeDownLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -11.0
+margin_top = -11.0
+margin_right = 11.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlendingHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 206.0
+margin_bottom = 50.0
+size_flags_vertical = 10
+
+[node name="OpacitySlider" type="TextureProgress" parent="MarginContainer/VBoxContainer/VBoxContainer/BlendingHBox"]
+margin_right = 206.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = "ValueSlider"
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+script = ExtResource( 1 )
+prefix = "Opacity:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 206.0
+margin_bottom = 114.0
+size_flags_vertical = 3
+
+[node name="LayerVbox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 206.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer/BlendingHBox/OpacitySlider" to="." method="_on_OpacitySlider_value_changed"]
